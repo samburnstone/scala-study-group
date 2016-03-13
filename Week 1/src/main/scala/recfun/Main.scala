@@ -52,5 +52,18 @@ object Main {
   /**
    * Exercise 3
    */
-  def countChange(money: Int, coins: List[Int]): Int = ???
+  def countChange(money: Int, coins: List[Int]): Int = {
+    def isDegenerateCase(money: Int, coins: List[Int]): Boolean =
+      coins.isEmpty || money == 0
+
+    def countChangeWithSortedCoins(money: Int, coins: List[Int]) =
+      if (isDegenerateCase(money, coins)) 0
+      else if (money - coins.head == 0) 1
+      else if (money - coins.head < 0)
+        countChange(money, coins.tail)
+      else
+        countChange(money - coins.head, coins) + countChange(money, coins.tail)
+
+      countChangeWithSortedCoins(money, coins.sortWith(_ < _))
+  }
 }
