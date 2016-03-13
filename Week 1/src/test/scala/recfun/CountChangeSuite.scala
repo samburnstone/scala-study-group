@@ -17,6 +17,10 @@ class CountChangeSuite extends FunSuite {
     assert(countChange(100,List()) === 0)
   }
 
+  test("countChange: when total is 5 and coin list contains [1]") {
+    assert(countChange(5, List(1)) === 1)
+  }
+
   test("countChange: example given in instructions") {
     assert(countChange(4,List(1,2)) === 3)
   }
